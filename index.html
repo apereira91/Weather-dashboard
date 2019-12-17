@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Dashboard</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid" id="heading">
+        <h1 class="display-4" id="docHeading">Weather Dashboard</h1>
+        <h2 id="cityHeader"></h2>
+        <p class="lead" id="dateDisplay"></p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3" id="searches">
+                <div class="row">
+                    <input type="text" id="city" placeholder="Search by City"></input>
+                    <button class="btn btn-secondary" id="submit">Submit</button>
+                </div>
+                <div class="row" id="citiesDiv">
+
+                    <table class="table">
+                        <thead>
+
+                            <tr id="tableHead">
+                                <th scope="col" id="recent">Recent searches</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-sm-9" id="weatherInfo">
+                <div class="row" id="todaysWather">
+                    <div class="col-sm" id="dailyWeatherDiv">
+                        <h2>Today's Forecast</h2>
+                        <div id="lowDiv"></div>
+                        <div id="highDiv"></div>
+                        <div id="humidity"></div>
+                        <div id="windSpeed"></div>
+                        <div id="description"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2 id="fiveDayForecast">5-Day Forecast</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div id="day1" class="col-md-2">
+                            <h5 id="day4_date"></h5>
+                            <h4 id="day4_temp"></h4>
+                            <img src="" id="icon4">
+                            <div id="day4_humidity"></div>
+                            <div id="day4_wind"></div>
+                        </div>
+                        <div id="day2" class="col-md-2">
+                            <h5 id="day12_date"></h5>
+                            <h4 id="day12_temp"></h4>
+                            <img src="" id="icon12">
+                            <div id="day12_humidity"></div>
+                            <div id="day12_wind"></div>
+                        </div>
+                        <div id="day3" class="col-md-2">
+                            <h5 id="day20_date"></h5>
+                            <h4 id="day20_temp"></h4>
+                            <img src="" id="icon20">
+                            <div id="day20_humidity"></div>
+                            <div id="day20_wind"></div>
+                        </div>
+                        <div id="day4" class="col-md-2">
+                            <h5 id="day28_date"></h5>
+                            <h4 id="day28_temp"></h4>
+                            <img src="" id="icon28">
+                            <div id="day28_humidity"></div>
+                            <div id="day28_wind"></div>
+                        </div>
+                        <div id="day5" class="col-md-2">
+                            <h5 id="day36_date"></h5>
+                            <h4 id="day36_temp"></h4>
+                            <img src="" id="icon36">
+                            <div id="day36_humidity"></div>
+                            <div id="day36_wind"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>
