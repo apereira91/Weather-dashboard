@@ -4,12 +4,12 @@ $(document).ready(function() {
         $("#dateDisplay").text(moment().format("MMMM DD, YYYY"))
     }, 1000);
     
-    cityList = JSON.parse(localStorage.getItem("city"));
+    cityList = JSON.parse(localStorage.getItem("#city"));
     if (cityList === null) {
         cityList = [];
     }
 
-    for (var i =cityList.length; i > 0; i--) {
+    for (var i = cityList.length; i > 0; i++) {
         if (cityList[i] != undefined) {
 
             var cityRow = $("<tr>");
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
         var city = $("#city").val().trim();
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
-        var queryURL = "https://api.openweathermap.prg/2.5/weather?q=" + city + "&apikey=" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=" + apiKey;
 
         $.ajax({
             url: queryURL,
@@ -60,18 +60,18 @@ $(document).ready(function() {
             $(cityRow).append(cityColumn);
             $("tbody").prepend(cityRow);
 
-            cityList = JSON.parse(localStorage.getItem("city"));
+            cityList = JSON.parse(localStorage.getItem("#city"));
             if (cityList === null) {
                 cityList = [];
             }
             cityList.push(response.name);
-            localStorage.setItem("city", JSON.stringify(cityList));
+            localStorage.setItem("#city", JSON.stringify(cityList));
         });
 
-        var queryURLForecast = queryURL + city + "&apikey" + apiKey;
+        
 
         $.ajax({
-            url: queryURLForecast,
+            url: queryURL,
             method: "GET"
         }).then (function(response){
             console.log(response);
@@ -106,7 +106,7 @@ $(document).ready(function() {
         console.log($(this).attr("city-name"));
         var city2 = $(this).attr("city-name");
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
-        var queryURL = "https://api.openweathermap.prg/2.5/weather?q=" + city2 + "&apikey" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&apikey" + apiKey;
 
         $.ajax({
             url: queryURL,
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         });
 
-        var queryURLForecast2 = queryURL + city2 + "&apikey" + apiKey;
+        var queryURLForecast2 = queryURL + city2 + "&appid" + apiKey;
 
         $.ajax({
             url: queryURLForecast2,
