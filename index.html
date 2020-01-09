@@ -6,19 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Dashboard</title>
 
+    <link rel="stylesheet" href="Assets/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid" id="heading">
-        <h1 class="display-4" id="docHeading">Weather Dashboard</h1>
-        <h2 id="cityHeader"></h2>
-        <p class="lead" id="dateDisplay"></p>
+        <h1 class="display-4 text-center" id="docHeading">Weather Dashboard</h1>
+        <h2 id="cityHeader" class="text-center"></h2>
+        <p class="lead text-center" id="dateDisplay"></p>
     </div>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3" id="searches">
                 <div class="row">
+                    <h4 class="font-weight-bold">Search by City</h4>
                     <input type="text" id="city" placeholder="Search by City"></input>
                     <button class="btn btn-secondary" id="submit">Submit</button>
                 </div>
@@ -53,39 +55,39 @@
                     </div>
                 </div>
                 <div class="row">
-                    <h2 id="fiveDayForecast">5-Day Forecast</h2>
+                    <h2 id="fiveDayForecast" class="text-center">5-Day Forecast</h2>
                 </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div id="day1" class="col-md-2">
+                <div class="row fiveDay">
+                    <div class="col-sm card-group">
+                        <div id="day1" class="col-md-2 card text-white bg-primary mb-3">
                             <h5 id="day4_date"></h5>
                             <h4 id="day4_temp"></h4>
                             <img src="" id="icon4">
                             <div id="day4_humidity"></div>
                             <div id="day4_wind"></div>
                         </div>
-                        <div id="day2" class="col-md-2">
+                        <div id="day2" class="col-md-2 card text-white bg-primary mb-3">
                             <h5 id="day12_date"></h5>
                             <h4 id="day12_temp"></h4>
                             <img src="" id="icon12">
                             <div id="day12_humidity"></div>
                             <div id="day12_wind"></div>
                         </div>
-                        <div id="day3" class="col-md-2">
+                        <div id="day3" class="col-md-2 card text-white bg-primary mb-3">
                             <h5 id="day20_date"></h5>
                             <h4 id="day20_temp"></h4>
                             <img src="" id="icon20">
                             <div id="day20_humidity"></div>
                             <div id="day20_wind"></div>
                         </div>
-                        <div id="day4" class="col-md-2">
+                        <div id="day4" class="col-md-2 card text-white bg-primary mb-3">
                             <h5 id="day28_date"></h5>
                             <h4 id="day28_temp"></h4>
                             <img src="" id="icon28">
                             <div id="day28_humidity"></div>
                             <div id="day28_wind"></div>
                         </div>
-                        <div id="day5" class="col-md-2">
+                        <div id="day5" class="col-md-2 card text-white bg-primary mb-3">
                             <h5 id="day36_date"></h5>
                             <h4 id="day36_temp"></h4>
                             <img src="" id="icon36">

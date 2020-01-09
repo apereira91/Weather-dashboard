@@ -1,0 +1,8 @@
+div#todaysWeather {
+    border: 1px solid gray;
+    line-height: 2;
+}
+
+div.fiveDay {
+    border: 1px solid gray;
+}
