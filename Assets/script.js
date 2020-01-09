@@ -43,7 +43,7 @@ $(document).ready(function() {
 
             $("#lowDiv").text("Low of: " + lowTempFaren + "°F");
             $("#highDiv").text("High of: " + highTempFaren + "°F");
-            $("#humidity").text("Humidity: " + response.main.humudity + "%");
+            $("#humidity").text("Humidity: " + response.main.humidity + "%");
             $("#windSpeed").text("Wind Speed: " + response.wind.speed + "MPH");
             $("#description").text("Today's Weather: " + response.weather[0].description);
             weather_icon = response.weather[0].icon + ".png"
@@ -55,7 +55,7 @@ $(document).ready(function() {
             cityLink.text(response.name);
             cityLink.attr("class", "btn btn-light");
             cityLink.attr("id", "newBtn");
-            cityLink.attr("city-name", response.name);
+            //cityLink.attr("city-name", response.name);
             $(cityColumn).append(cityLink);
             $(cityRow).append(cityColumn);
             $("tbody").prepend(cityRow);
@@ -68,15 +68,16 @@ $(document).ready(function() {
             localStorage.setItem("#city", JSON.stringify(cityList));
         });
 
+        var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
+        var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
         
-
         $.ajax({
-            url: queryURL,
+            url: queryURL2,
             method: "GET"
         }).then (function(response){
             console.log(response);
-            localStorage.setItem("forecast", JSON.stringify(response));
-            result = JSON.parse(localStorage.getItem("forecast"));
+            localStorage.setItem("#city", JSON.stringify(response));
+            result = JSON.parse(localStorage.getItem("#city"));
             newDays = [4, 12, 20, 28, 36]
             for (var i = 0; i < newDays.length; i++) {
                 var dayTemp = result.list[i].main.temp;
@@ -86,7 +87,7 @@ $(document).ready(function() {
                 var dayWindSpeed = result.list[i].wind.speed;
                 var dayWeather = result.list[i].weather[0].description;
                 var dayWeatherId = result.list[i].weather[0].main;
-                var dayIcon = result.list[i].weather[0].icon;
+                var dayIcon = result.list[i].weather.icon;
 
                 $("#day" + newDays[i] + "_date").text(moment.unix(dayDate).format("MMMM DD"));
                 $("#day" + newDays[i] + "_date").attr("class", "date");
@@ -106,7 +107,7 @@ $(document).ready(function() {
         console.log($(this).attr("city-name"));
         var city2 = $(this).attr("city-name");
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&apikey" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&apikey=" + apiKey;
 
         $.ajax({
             url: queryURL,
@@ -128,10 +129,10 @@ $(document).ready(function() {
 
         });
 
-        var queryURLForecast2 = queryURL + city2 + "&appid" + apiKey;
+        
 
         $.ajax({
-            url: queryURLForecast2,
+            url: queryURL2,
             method: "GET"
         }).then (function(response){
             console.log(response);
