@@ -36,7 +36,6 @@ $(document).ready(function() {
         })
         
         .then(function(response) {
-            console.log(response);
 
             lowTempFaren = Math.floor(((response.main.temp_min - 273.15) * 1.8) + 32);
             highTempFaren = Math.floor(((response.main.temp_min - 273.15) * 1.8) + 32);
@@ -54,8 +53,8 @@ $(document).ready(function() {
             var cityLink = $("<button>");
             cityLink.text(response.name);
             cityLink.attr("class", "btn btn-light");
-            cityLink.attr("id", "newBtn");
-            //cityLink.attr("city-name", response.name);
+            cityLink.attr("class", "newBtn");
+            cityLink.attr("value", response.name);
             $(cityColumn).append(cityLink);
             $(cityRow).append(cityColumn);
             $("tbody").prepend(cityRow);
@@ -70,32 +69,32 @@ $(document).ready(function() {
 
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
         var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
-        
+    
+
         $.ajax({
             url: queryURL2,
             method: "GET"
-        }).then (function(response){
-            console.log(response);
+        }).then (function(response) {
             localStorage.setItem("#city", JSON.stringify(response));
             result = JSON.parse(localStorage.getItem("#city"));
             newDays = [4, 12, 20, 28, 36]
             for (var i = 0; i < newDays.length; i++) {
-                var dayTemp = result.list[i].main.temp;
+                var newDate = newDays[i];
+                var dayTemp = result.list[newDate].main.temp;
                 var dayTempFaren = Math.floor(((dayTemp - 273.15) * 1.8) + 32);
-                var dayDate = result.list[i].dt;
-                var dayHumidity = result.list[i].main.humidity;
-                var dayWindSpeed = result.list[i].wind.speed;
-                var dayWeather = result.list[i].weather[0].description;
-                var dayWeatherId = result.list[i].weather[0].main;
-                var dayIcon = result.list[i].weather.icon;
+                var dayDate = result.list[newDate].dt;
+                var dayHumidity = result.list[newDate].main.humidity;
+                var dayWindSpeed = result.list[newDate].wind.speed;
+                var dayIcon = result.list[newDate].weather[0].icon;
+        
 
-                $("#day" + newDays[i] + "_date").text(moment.unix(dayDate).format("MMMM DD"));
-                $("#day" + newDays[i] + "_date").attr("class", "date");
-                $("#day" + newDays[i] + "_temp").text(dayTempFaren + "°F");
-                $("#day" + newDays[i] + "_humidity").text(dayHumidity + "% Humidity");
-                $("#day" + newDays[i] + "_wind").attr("class", "windText");
-                $("#day" + newDays[i] + "_wind").text("Wind: " + dayWindSpeed +" MPH");
-                $("#icon" + newDays[i]).attr("src", "http://openweathermap.org/img/wn/" + dayIcon + ".png");
+                $("#day" + newDate + "_date").text(moment.unix(dayDate).format("MMMM DD"));
+                $("#day" + newDate + "_date").attr("class", "date");
+                $("#day" + newDate + "_temp").text(dayTempFaren + "°F");
+                $("#day" + newDate + "_humidity").text(dayHumidity + "% Humidity");
+                $("#day" + newDate + "_wind").attr("class", "windText");
+                $("#day" + newDate + "_wind").text("Wind: " + dayWindSpeed +" MPH");
+                $("#icon" + newDate).attr("src", "http://openweathermap.org/img/wn/" + dayIcon + "@2x.png");
             };
 
             $("#weatherInfo").attr("style", "display: block");
@@ -104,8 +103,8 @@ $(document).ready(function() {
     });
 
     function buttonWeatherDisplay() {
-        console.log($(this).attr("city-name"));
-        var city2 = $(this).attr("city-name");
+        console.log($(this));
+        var city2 = $(this).val();
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&apikey=" + apiKey;
 
@@ -140,22 +139,21 @@ $(document).ready(function() {
             result = JSON.parse(localStorage.getItem("forecast"));
             newDays = [4, 12, 20, 28, 36]
             for (var i = 0; i < newDays.length; i++) {
-                var dayTemp = result.list[i].main.temp;
+                var newDate = newDays[i];
+                var dayTemp = result.list[newDate].main.temp;
                 var dayTempFaren = Math.floor(((dayTemp - 273.15) * 1.8) + 32);
-                var dayDate = result.list[i].dt;
-                var dayHumidity = result.list[i].main.humidity;
-                var dayWindSpeed = result.list[i].wind.speed;
-                var dayWeather = result.list[i].weather[0].description;
-                var dayWeatherId = result.list[i].weather[0].main;
-                var dayIcon = result.list[i].weather[0].icon;
+                var dayDate = result.list[newDate].dt;
+                var dayHumidity = result.list[newDate].main.humidity;
+                var dayWindSpeed = result.list[newDate].wind.speed;
+                var dayIcon = result.list[newDate].weather[0].icon;
 
-                $("#day" + newDays[i] + "_date").text(moment.unix(dayDate).format("MMMM DD"));
-                $("#day" + newDays[i] + "_date").attr("class", "date");
-                $("#day" + newDays[i] + "_temp").text(dayTempFaren + "°F");
-                $("#day" + newDays[i] + "_humidity").text(dayHumidity + "% Humidity");
-                $("#day" + newDays[i] + "_wind").attr("class", "windText");
-                $("#day" + newDays[i] + "_wind").text("Wind: " + dayWindSpeed +" MPH");
-                $("#icon" + newDays[i]).attr("src", "http://openweathermap.org/img/wn/" + dayIcon + ".png");
+                $("#day" + newDate + "_date").text(moment.unix(dayDate).format("MMMM DD"));
+                $("#day" + newDate + "_date").attr("class", "date");
+                $("#day" + newDate + "_temp").text(dayTempFaren + "°F");
+                $("#day" + newDate + "_humidity").text(dayHumidity + "% Humidity");
+                $("#day" + newDate + "_wind").attr("class", "windText");
+                $("#day" + newDate + "_wind").text("Wind: " + dayWindSpeed +" MPH");
+                $("#icon" + newDate).attr("src", "http://openweathermap.org/img/wn/" + dayIcon + ".png");
             };
 
             $("#weatherInfo").attr("style", "display: block");
@@ -164,7 +162,7 @@ $(document).ready(function() {
 
     };
 
-    $(".btn").on("click", buttonWeatherDisplay);
+    $(".newBtn").on("click", buttonWeatherDisplay);
 
 
 
