@@ -103,8 +103,8 @@ $(document).ready(function() {
     });
 
     function buttonWeatherDisplay() {
-        console.log($(this));
         var city2 = $(this).val();
+        console.log(city2);
         var apiKey = "e3df94dcbbc5404db3f3f6ce18a74cef";
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&apikey=" + apiKey;
 
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         });
 
-        
+        var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city2 + "&appid=" + apiKey;
 
         $.ajax({
             url: queryURL2,
@@ -138,8 +138,8 @@ $(document).ready(function() {
             localStorage.setItem("forecast", JSON.stringify(response));
             result = JSON.parse(localStorage.getItem("forecast"));
             newDays = [4, 12, 20, 28, 36]
-            for (var i = 0; i < newDays.length; i++) {
-                var newDate = newDays[i];
+            for (var j = 0; j < newDays.length; j++) {
+                var newDate = newDays[j];
                 var dayTemp = result.list[newDate].main.temp;
                 var dayTempFaren = Math.floor(((dayTemp - 273.15) * 1.8) + 32);
                 var dayDate = result.list[newDate].dt;
@@ -162,7 +162,7 @@ $(document).ready(function() {
 
     };
 
-    $(".newBtn").on("click", buttonWeatherDisplay);
+    $(".newBtn").on("click", buttonWeatherDisplay());
 
 
 
